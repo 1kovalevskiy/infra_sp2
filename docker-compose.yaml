@@ -21,9 +21,7 @@ services:
       - ./.env
   web:
     build: .
-#    image: yamdb:0.0.1
     restart: always
-    command: gunicorn api_yamdb.wsgi:application --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
     # "зависит от",
@@ -58,39 +56,3 @@ services:
     depends_on:
       # Контейнер nginx должен быть запущен после контейнера web
       - web
-#  collectstatic:
-#    image: yamdb:0.0.1
-#    command: python manage.py collectstatic --noinput
-#    depends_on:
-#      - db
-#      - web
-#    volumes:
-#      - media_value:/code/media/
-#      - static_value:/code/static/
-#    env_file:
-#      - ./.env
-#  makemigrations:
-#    image: yamdb:0.0.1
-#    command: python manage.py makemigrations --noinput
-#    depends_on:
-#      - db
-#      - web
-#      - collectstatic
-#    volumes:
-#      - media_value:/code/media/
-#      - static_value:/code/static/
-#    env_file:
-#      - ./.env
-#  migrate:
-#    image: yamdb:0.0.1
-#    command: python manage.py migrate --noinput
-#    depends_on:
-#      - db
-#      - web
-#      - makemigrations
-#      - collectstatic
-#    volumes:
-#      - media_value:/code/media/
-#      - static_value:/code/static/
-#    env_file:
-#      - ./.env
